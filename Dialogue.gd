@@ -21,8 +21,7 @@ func _ready() -> void:
 
 func update_message(message: String) -> void:
 	
-	content.bbcode_text = message
-	content.bbcode_text = pause_calculator.extract_pauses_from_string(content.text)
+	content.bbcode_text = pause_calculator.extract_pauses_from_string(message)
 	content.visible_characters = 0
 	
 	type_timer.start()
