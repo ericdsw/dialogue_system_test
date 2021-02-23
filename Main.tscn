@@ -1,0 +1,70 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Themes/MainTheme.tres" type="Theme" id=1]
+[ext_resource path="res://Main.gd" type="Script" id=2]
+[ext_resource path="res://Dialogue.tscn" type="PackedScene" id=3]
+
+[node name="Main" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -0.667419
+margin_right = -0.667419
+mouse_filter = 1
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_left = 93.0
+margin_top = 115.0
+margin_right = 883.0
+margin_bottom = 191.0
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FunnyButton" type="Button" parent="HBoxContainer"]
+margin_right = 250.0
+margin_bottom = 76.0
+rect_min_size = Vector2( 250, 0 )
+mouse_default_cursor_shape = 2
+text = "Funny thing"
+
+[node name="SadButton" type="Button" parent="HBoxContainer"]
+margin_left = 270.0
+margin_right = 520.0
+margin_bottom = 76.0
+rect_min_size = Vector2( 250, 0 )
+mouse_default_cursor_shape = 2
+text = "Sad Thing"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WeirdButton" type="Button" parent="HBoxContainer"]
+margin_left = 540.0
+margin_right = 790.0
+margin_bottom = 76.0
+rect_min_size = Vector2( 250, 0 )
+mouse_default_cursor_shape = 2
+text = "Weird Thing"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Dialogue" parent="." instance=ExtResource( 3 )]
+margin_left = 93.4388
+margin_top = 349.728
+margin_right = 93.7427
+margin_bottom = 349.928
+
+[node name="NextTimer" type="Timer" parent="."]
+one_shot = true
+[connection signal="pressed" from="HBoxContainer/FunnyButton" to="." method="_on_FunnyButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/SadButton" to="." method="_on_SadButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/WeirdButton" to="." method="_on_WeirdButton_pressed"]
+[connection signal="message_completed" from="Dialogue" to="." method="_on_Dialogue_message_completed"]
+[connection signal="timeout" from="NextTimer" to="." method="_on_NextTimer_timeout"]

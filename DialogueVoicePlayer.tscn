@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Sounds/Blop-Mark_DiAngelo-79054334-modified.wav" type="AudioStream" id=1]
+[ext_resource path="res://DialogueVoicePlayer.gd" type="Script" id=2]
+
+[node name="DialogueVoicePlayer" type="AudioStreamPlayer"]
+stream = ExtResource( 1 )
+script = ExtResource( 2 )

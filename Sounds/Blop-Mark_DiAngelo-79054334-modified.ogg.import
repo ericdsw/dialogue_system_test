@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Blop-Mark_DiAngelo-79054334-modified.ogg-03750d09a0e219365e4e3614d245da26.oggstr"
+
+[deps]
+
+source_file="res://Sounds/Blop-Mark_DiAngelo-79054334-modified.ogg"
+dest_files=[ "res://.import/Blop-Mark_DiAngelo-79054334-modified.ogg-03750d09a0e219365e4e3614d245da26.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
