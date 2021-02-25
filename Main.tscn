@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Themes/MainTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Main.gd" type="Script" id=2]
-[ext_resource path="res://Dialogue.tscn" type="PackedScene" id=3]
+[ext_resource path="res://DialogueManager.tscn" type="PackedScene" id=3]
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -17,9 +17,9 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_left = 93.0
+margin_left = 116.0
 margin_top = 115.0
-margin_right = 883.0
+margin_right = 906.0
 margin_bottom = 191.0
 custom_constants/separation = 20
 __meta__ = {
@@ -55,16 +55,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Dialogue" parent="." instance=ExtResource( 3 )]
-margin_left = 93.4388
-margin_top = 349.728
-margin_right = 93.7427
-margin_bottom = 349.928
+[node name="DialoguePosition" type="Position2D" parent="."]
+position = Vector2( 113, 350 )
 
-[node name="NextTimer" type="Timer" parent="."]
-one_shot = true
+[node name="DialogueManager" parent="." instance=ExtResource( 3 )]
+
+[node name="NextLabel" type="Label" parent="."]
+margin_left = 4.0
+margin_top = 516.0
+margin_right = 2043.0
+margin_bottom = 558.0
+rect_scale = Vector2( 0.5, 0.5 )
+text = "Press Enter"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="HBoxContainer/FunnyButton" to="." method="_on_FunnyButton_pressed"]
 [connection signal="pressed" from="HBoxContainer/SadButton" to="." method="_on_SadButton_pressed"]
 [connection signal="pressed" from="HBoxContainer/WeirdButton" to="." method="_on_WeirdButton_pressed"]
-[connection signal="message_completed" from="Dialogue" to="." method="_on_Dialogue_message_completed"]
-[connection signal="timeout" from="NextTimer" to="." method="_on_NextTimer_timeout"]
+[connection signal="finished" from="DialogueManager" to="." method="_on_DialogueManager_finished"]
+[connection signal="message_completed" from="DialogueManager" to="." method="_on_DialogueManager_message_completed"]
+[connection signal="message_requested" from="DialogueManager" to="." method="_on_DialogueManager_message_requested"]

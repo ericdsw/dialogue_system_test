@@ -17,8 +17,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PauseCalculator" parent="." instance=ExtResource( 5 )]
-
 [node name="Background" type="NinePatchRect" parent="."]
 margin_right = 798.0
 margin_bottom = 149.0
@@ -43,14 +41,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DialogueVoicePlayer" parent="." instance=ExtResource( 4 )]
-
 [node name="TypeTyper" type="Timer" parent="."]
 wait_time = 0.04
 
+[node name="DialogueVoicePlayer" parent="." instance=ExtResource( 4 )]
+
+[node name="PauseCalculator" parent="." instance=ExtResource( 5 )]
+
 [node name="PauseTimer" type="Timer" parent="."]
 one_shot = true
-[connection signal="pause_requested" from="PauseCalculator" to="." method="_on_PauseCalculator_pause_requested"]
-[connection signal="finished" from="DialogueVoicePlayer" to="." method="_on_DialogueVoicePlayer_finished"]
 [connection signal="timeout" from="TypeTyper" to="." method="_on_TypeTyper_timeout"]
+[connection signal="finished" from="DialogueVoicePlayer" to="." method="_on_DialogueVoicePlayer_finished"]
+[connection signal="pause_requested" from="PauseCalculator" to="." method="_on_PauseCalculator_pause_requested"]
 [connection signal="timeout" from="PauseTimer" to="." method="_on_PauseTimer_timeout"]

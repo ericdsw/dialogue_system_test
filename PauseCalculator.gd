@@ -13,6 +13,7 @@ const BBCODE_E_PATTERN := "\\[\\/(.*?)\\]"
 # we use this global pattern to match all of them.
 const CUSTOM_TAG_PATTERN := "({(.*?)})"
 
+# List of pauses found for the last parsed string
 var _pauses := []
 
 # Pause Regex
@@ -68,23 +69,21 @@ func _find_pauses(from_string: String) -> void:
 			_pause_regex_result.get_start(),
 			from_string
 		)
-
-		var _pause_duration := float(_float_regex.search(_tag_string).get_string())
-
-		var _pause = Pause.new(_tag_position, _pause_duration)
+		var _pause = Pause.new(_tag_position, _tag_string)
 		_pauses.append(_pause)
 
-# Adjusts the provided position based on the bbcodes and custom tags that are found to the left of
-# the provided string.
+# Adjusts the provided position based on the bbcodes and custom tags that are found to the left 
+# of the provided string.
 func _adjust_position(pos: int, source_string: String) -> int:
-
+	
+	# Previous tags
 	var _new_pos := pos
 	var _left_of_pos := source_string.left(pos)
 
 	var _all_prev_tags := _custom_tag_regex.search_all(_left_of_pos)
 	for _tag_result in _all_prev_tags:
 		_new_pos -= _tag_result.get_string().length()
-
+	
 	var _all_prev_start_bbcodes := _bbcode_i_regex.search_all(_left_of_pos)
 	for _tag_result in _all_prev_start_bbcodes:
 		_new_pos -= _tag_result.get_string().length()
